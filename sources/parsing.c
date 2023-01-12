@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/10 17:40:45 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/10 17:41:44 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/12 18:28:47 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ bool	parsing(int argc, char **argv, t_data *data)
 	data->die_time = philatoi(argv[i++]);
 	data->eat_time = philatoi(argv[i++]);
 	data->sleep_time = philatoi(argv[i++]);
+	data->fork_ok = malloc(data->philo_amount * sizeof(bool));
 	if (argc == 6)
 	{
 		data->finish_when_full = true;
@@ -56,6 +57,7 @@ bool	parsing(int argc, char **argv, t_data *data)
 		data->meals_needed = 1;
 	}
 	if (data->philo_amount <= 0 || data->die_time <= 0 || data->eat_time <= 0 \
-		|| data->sleep_time <= 0 || data->meals_needed <= 0)
+		|| data->sleep_time <= 0 || data->meals_needed <= 0 \
+		|| data->fork_ok == NULL)
 		return (false);
 }

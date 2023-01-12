@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 12:55:20 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/10 17:46:14 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/12 18:23:52 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct data
 	int		sleep_time;
 	bool	finish_when_full;
 	int		meals_needed;
+	bool	*fork_ok;
 
 }				t_data;
 
