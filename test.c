@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/04 18:38:49 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/12 18:29:27 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/13 13:43:54 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ int	main(int argc, char **argv)
 	printf("doubled and heap var = %d\n", *ret);
 	return (0);
 }
-

@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 12:55:20 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/12 18:23:52 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/13 13:44:51 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct data
 typedef struct philo
 {
 	int				meals_eaten;
+	long			last_mealtime;
 	struct t_data	*data;
 
 }				t_philo;

@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 18:23:54 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/12 18:47:10 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/13 19:55:51 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 void	*philo(void *para)
 {
-	while (1)
+	while (//philo alive?)
 	{
 		//eat
 		//sleep
 		//think
 	}
-
-	//eat
-	//
 }
 
 void	info
@@ -34,7 +31,12 @@ bool forkavailble;
 
 //mutex lock protect print, dont do much else
 
-//release fork
+//release fork function
+
+//void create threads
+{
+
+}
 
 int	main(int argc, char **argv)
 {
@@ -46,5 +48,6 @@ int	main(int argc, char **argv)
 		printf("wrong input buddy");
 		return (1);
 	}
+
 	return (0);
 }
