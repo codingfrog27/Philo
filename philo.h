@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 12:55:20 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/13 13:44:51 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/16 19:08:28 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,23 @@
 
 typedef struct data
 {
-	int		philo_amount;
-	int		die_time;
-	int		eat_time;
-	int		sleep_time;
-	bool	finish_when_full;
-	int		meals_needed;
-	bool	*fork_ok;
-
+	int				philo_amount;
+	int				die_time;
+	int				eat_time;
+	int				sleep_time;
+	long			start_time;
+	bool			finish_when_full;
+	int				meals_needed;
+	bool			*fork_ok;
+	pthread_mutex_t	*forks;
 }				t_data;
 
 typedef struct philo
 {
+	int				philo_nbr;
 	int				meals_eaten;
 	long			last_mealtime;
+	bool			alive;
 	struct t_data	*data;
 
 }				t_philo;
