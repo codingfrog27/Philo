@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 12:55:20 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/16 19:08:28 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/19 19:59:38 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,7 @@ typedef struct philo
 }				t_philo;
 
 bool	parsing(int argc, char **argv, t_data *data);
+
+long	time_since_start(long start);
+long	whattimeisitrightnow(void);
 #endif // !PHILO_H
