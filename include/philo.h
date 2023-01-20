@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 12:55:20 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/19 19:59:38 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/20 19:42:58 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@
 # include <limits.h>
 # include <sys/time.h>
 
+typedef struct philo
+{
+	int				id;
+	int				meals_eaten;
+	pthread_mutex_t	meal_check;
+	long			last_mealtime;
+	bool			alive;
+	void			*data;
+	pthread_t		thread;
+}				t_philo;
+
 typedef struct data
 {
 	int				philo_amount;
@@ -30,22 +41,17 @@ typedef struct data
 	long			start_time;
 	bool			finish_when_full;
 	int				meals_needed;
-	bool			*fork_ok;
+	bool			*fork_ok; //?
 	pthread_mutex_t	*forks;
+	t_philo			*philos;
 }				t_data;
 
-typedef struct philo
-{
-	int				philo_nbr;
-	int				meals_eaten;
-	long			last_mealtime;
-	bool			alive;
-	struct t_data	*data;
-
-}				t_philo;
 
 bool	parsing(int argc, char **argv, t_data *data);
 
-long	time_since_start(long start);
+
+//time
+long	time_since_x(long start);
 long	whattimeisitrightnow(void);
+bool	coolsleep(useconds_t sleep_time);
 #endif // !PHILO_H

@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/10 17:40:45 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/19 20:06:56 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/20 18:44:05 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int	philatoi(char *str)
 		ret = (ret * 10) + (str[i] - '0');
 		if (str[i] < '0' || str[i] > '9' || ret > INT_MAX)
 			return (-1);
+		i++;
 	}
 	return ((int)ret);
 }
