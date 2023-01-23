@@ -6,14 +6,14 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/10 18:02:24 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/20 18:47:52 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/23 18:24:16 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
 #include "philo.h"
 
-long	whattimeisitrightnow(void)
+long	whattimeisitrightnow.com(void)
 {
 	struct timeval	time;
 

@@ -6,7 +6,7 @@
 #    By: mde-cloe <mde-cloe@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/19 19:48:53 by mde-cloe      #+#    #+#                  #
-#    Updated: 2023/01/19 20:11:47 by mde-cloe      ########   odam.nl          #
+#    Updated: 2023/01/23 17:31:24 by mde-cloe      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,33 +14,42 @@
 
 NAME 			:= philo
 CC				= gcc
-COMPIL_FLAGS	?= -Wall -Wextra -Werror -o $@
+COMPIL_FLAGS	?= -Wall -Wextra -Werror
+DEBUG_FLAGS		?=
+#-fsanitize=thread
 LINKFLAGS 		?= -I include
 #sources and objects -------------
 
-SOURCEFILES	:= 	main.c \
+SOURCEFILES	:=	main.c \
 				parsing.c \
-				time \
-				utils.c
+				time.c \
+				utils.c \
+				init.c \
+				philo.c \
 
 OFILES	:=	$(SOURCEFILES:.c=.o)
-SRC_DIR	:=	sources/
-OBJ_DIR	:=	objects/
+SRC_DIR	:=	./sources/
+OBJ_DIR	:=	./objects/
 SOURCES	:=	$(addprefix $(SRC_DIR), $(SOURCEFILES))
 OBJS	:=	$(addprefix $(OBJ_DIR), $(OFILES))
 
 #-----------------Utils-----------------
-
+debug: $(OBJ_DIR) $(OBJS) $(SRCS)
+	@printf "$(C_GREEN)compiling! $(C_ORANGE)$@ debug\n"
+	@$(CC) $(OBJS) $(COMPIL_FLAGS) -o $(NAME) $(LINKFLAGS) $(DEBUG_FLAGS)
+	@printf "\n **$(C_BOLD)$(C_CYAN)all done <3$(C_ORANGE)s**\n$(C_RESET)"
 #-----------------targets---------------
 
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJS) $(SRCS)
-	@printf "\n$(C_GREEN)compiling! $(C_ORANGE)$@\n\n **$(C_BOLD)$(C_CYAN)all done <3$(C_ORANGE)s**\n$(C_RESET)"
-	@$(CC) $(OBJS) $(COMPIL_FLAGS) $(LINKFLAGS)
+	@printf "$(C_GREEN)compiling! $(C_ORANGE)$@\n"
+	@$(CC) $(OBJS) $(COMPIL_FLAGS) -o $@ $(LINKFLAGS) -g
+	@printf "\n **$(C_BOLD)$(C_CYAN)all done <3$(C_ORANGE)s**\n$(C_RESET)"
 
 $(OBJ_DIR)%.o : $(SRC_DIR)%.c | $(OBJ_DIR)
-	$(CC) $< $(COMPIL_FLAGS) -c $(LINKFLAGS) && printf "$(C_GREEN)Compiling $(C_CYAN)$(notdir $<) \n$(C_RESET)"
+	@$(CC) $(COMPIL_FLAGS) -o $@ $(LINKFLAGS) -c $< -g
+	@printf "$(C_GREEN)Compiling $(C_CYAN)$(notdir $<) \n$(C_RESET)"
 
 $(OBJ_DIR):
 	@mkdir $(OBJ_DIR)
