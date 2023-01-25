@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 18:23:54 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/23 18:17:26 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/25 20:03:33 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,16 @@ bool	dinner_time(t_data *data)
 		i++;
 	}
 	// might change to 1 mutex instead of 1mutex per philo
+	data->all_alive = true; //could move to init or parsing, but can also be
+	// check for thread creation :)
 	return (true);
 }
-//grab fork func
-//^- lock-> check avail -> if yes eat -> else usleep 30 - 1000 ms)
-
-//mutex lock protect print, dont do much else
-
-//release fork function
-
-//void create threads
 
 void	monitoring(t_data *data)
 {
 	int		i;
 	t_philo	*philos;
+	long	last_mealtime;
 
 	i = 0;
 	philos = data->philos;
@@ -63,10 +58,12 @@ void	monitoring(t_data *data)
 		while (i < data->philo_amount)
 		{
 			pthread_mutex_lock(philos[i].meal_check);
-			pthread_mutex_lock(philos[i].meal_check);
-			if (time_since_x(philos[i].last_mealtime) > data->die_time)
+			last_mealtime = philos[i].last_mealtime;
+			pthread_mutex_unlock(philos[i].meal_check);
+			if (time_since_x(last_mealtime) > data->die_time)
 			{
-				philos[i].alive = false;
+				pthread_mutex_lock(philos[i].meal_check);
+				data->all_alive = false;
 				end_simulation();
 			}
 			pthread_mutex_unlock(philos[i].meal_check);

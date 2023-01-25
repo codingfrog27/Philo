@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/23 17:14:11 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/23 18:06:11 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/25 15:21:37 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,10 @@ void	*philo(void *para)
 		repeat(philo);
 	}
 }
+
+//grab fork func
+//^- lock-> check avail -> if yes eat -> else usleep 30 - 1000 ms)
+
+//mutex lock protect print, dont do much else
+
+//release fork function

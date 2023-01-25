@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/23 12:31:11 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/23 17:55:08 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/25 20:08:17 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	setting_the_table(t_data *data)
 	pthread_mutex_t	*meal_check;
 
 	data->philos = philo_init(data);
-	meal_check = malloc(sizeof(pthread_mutex_t) * data->philo_amount);
+	meal_check = malloc(sizeof(pthread_mutex_t) * data->philo_amount); //change to 1 mutex in data?
 	//could just use normal mutexes instead of ptrs?
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_amount);
 	if (!data->philos || !meal_check || !data->forks)
