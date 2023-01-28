@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 18:23:54 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/25 20:03:33 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/28 21:21:07 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,15 @@ void	monitoring(t_data *data)
 			pthread_mutex_unlock(philos[i].meal_check);
 			if (time_since_x(last_mealtime) > data->die_time)
 			{
-				pthread_mutex_lock(philos[i].meal_check);
+				pthread_mutex_lock(&data->living_mutex);
 				data->all_alive = false;
 				end_simulation();
+				pthread_mutex_unlock(&data->living_mutex);
 			}
 			pthread_mutex_unlock(philos[i].meal_check);
 			i++;
 		}
-		coolsleep(250); //random nbr atm
+		i = 0;
 	}
 }
 

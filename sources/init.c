@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/23 12:31:11 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/25 20:08:17 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/28 21:23:18 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static t_philo	*philo_init(t_data	*data)
 		philos[i].meals_eaten = 0;
 		philos[i].last_mealtime = 0;
 		// not sure if ^ should be 0 or local time
-		philos[i].alive = true;
 		philos[i].data = data;
 		i++;
 	}

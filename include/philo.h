@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 12:55:20 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/25 20:09:06 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/28 21:20:19 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ typedef struct data
 	int				eat_time;
 	int				sleep_time;
 	long			start_time;
+	pthread_mutex_t	living_mutex;
 	bool			all_alive;
 	bool			finish_when_full;
 	int				meals_needed;
-	pthread_mutex_t	real_check; //mutex instead of ptr so i dont need to malloc it.. right?
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 }				t_data;

@@ -6,14 +6,14 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/10 18:02:24 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/23 18:24:16 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/01/28 21:22:39 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/time.h>
 #include "philo.h"
 
-long	whattimeisitrightnow.com(void)
+long	whattimeisitrightnow(void)
 {
 	struct timeval	time;
 
@@ -33,10 +33,8 @@ bool	coolsleep(useconds_t sleep_time)
 	long		time_passed;
 	useconds_t	nap_time;
 	//useconds is just an unsigned int?
-
 	//still needs to be tested, idk if the all the values of usleep and the
 	// time functions translate properly
-
 	start_time = whattimeisitrightnow();
 	time_passed = 0;
 	nap_time = sleep_time / 100;
