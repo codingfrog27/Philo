@@ -6,43 +6,17 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 18:23:54 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/28 21:21:07 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/06 19:12:37 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	end_simulation()
+void	end_simulation(t_philo *philo)
 {
-	printf("bye byeee\n");
+	printf("philo %i died, their last mealtime was %lu \
+	rest in pepperoni \n bye byeee\n", philo->id, philo->last_mealtime);
 	exit(1);
-}
-
-bool	dinner_time(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->philo_amount)
-	{
-		if (pthread_mutex_lock(data->philos[i].meal_check) != 0 || \
-		pthread_create(&data->philos->thread, NULL, &philo, \
-		(void *)&data->philos[i]) != 0)
-			return (false); //should be free function?
-				// could make it return i to see how many threads i should free
-		i++;
-	}
-	i = 0;
-	while (i < data->philo_amount)
-	{
-		if (pthread_mutex_unlock(data->philos[i].meal_check) != 0)
-			return (false);
-		i++;
-	}
-	// might change to 1 mutex instead of 1mutex per philo
-	data->all_alive = true; //could move to init or parsing, but can also be
-	// check for thread creation :)
-	return (true);
 }
 
 void	monitoring(t_data *data)
@@ -60,11 +34,13 @@ void	monitoring(t_data *data)
 			pthread_mutex_lock(philos[i].meal_check);
 			last_mealtime = philos[i].last_mealtime;
 			pthread_mutex_unlock(philos[i].meal_check);
-			if (time_since_x(last_mealtime) > data->die_time)
+			if (last_mealtime > data->die_time)
 			{
+				printf("C_RED LAST MEALTIME WAS %lu but die time is %i", \
+				last_mealtime, data->die_time);
 				pthread_mutex_lock(&data->living_mutex);
 				data->all_alive = false;
-				end_simulation();
+				end_simulation(&philos[i]);
 				pthread_mutex_unlock(&data->living_mutex);
 			}
 			pthread_mutex_unlock(philos[i].meal_check);
@@ -84,7 +60,7 @@ int	main(int argc, char **argv)
 		//might need a specefic error msg for this??
 		return (1);
 	}
-	if (setting_the_table(&data) && dinner_time(&data))
+	if (setting_the_table(&data) && starting_threads(&data))
 		monitoring(&data);
 	//1 philo might be edgecase that needs hardcoding
 	return (0);

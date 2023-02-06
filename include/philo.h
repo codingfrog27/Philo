@@ -6,13 +6,14 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 12:55:20 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/28 21:20:19 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/06 19:11:55 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include "h_colors.h"
 # include <pthread.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -50,7 +51,8 @@ typedef struct data
 
 bool	parsing(int argc, char **argv, t_data *data);
 bool	setting_the_table(t_data *data);
-void	*philo(void *para);
+bool	starting_threads(t_data *data);
+void	*philo_routine(void *para);
 
 //time
 long	time_since_x(long start);

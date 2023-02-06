@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/23 12:31:11 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/28 21:23:18 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/06 19:07:29 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ bool	setting_the_table(t_data *data)
 	pthread_mutex_t	*meal_check;
 
 	data->philos = philo_init(data);
-	meal_check = malloc(sizeof(pthread_mutex_t) * data->philo_amount); //change to 1 mutex in data?
+	meal_check = malloc(sizeof(pthread_mutex_t) * data->philo_amount);
+	 //change to 1 mutex in data?
 	//could just use normal mutexes instead of ptrs?
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->philo_amount);
 	if (!data->philos || !meal_check || !data->forks)
@@ -59,5 +60,32 @@ bool	setting_the_table(t_data *data)
 		i++;
 	}
 	data->philos[i - 1].right_fork = &data->forks[0];
+	return (true);
+}
+
+bool	starting_threads(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->philo_amount)
+	{
+		if (pthread_mutex_lock(data->philos[i].meal_check) != 0 || \
+		pthread_create(&data->philos->thread, NULL, &philo_routine, \
+		(void *)&data->philos[i]) != 0)
+			return (false); //should be free function?
+				// could make it return i to see how many threads i should free
+		i++;
+	}
+	i = 0;
+	while (i < data->philo_amount)
+	{
+		if (pthread_mutex_unlock(data->philos[i].meal_check) != 0)
+			return (false);
+		i++;
+	}
+	// might change to 1 mutex instead of 1mutex per philo
+	data->all_alive = true; //could move to init or parsing, but can also be
+	data->start_time = whattimeisitrightnow();// check for thread creation :)
 	return (true);
 }

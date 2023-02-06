@@ -6,7 +6,7 @@
 #    By: mde-cloe <mde-cloe@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/19 19:48:53 by mde-cloe      #+#    #+#                  #
-#    Updated: 2023/01/23 17:31:24 by mde-cloe      ########   odam.nl          #
+#    Updated: 2023/02/06 19:01:41 by mde-cloe      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,9 +66,9 @@ re: fclean all
 #-----------------easy testing---------------
 
 test: $(NAME) $(OBJS) $(SRCS)
-	@./philo 5 5000000 200 200
+	@./philo 5 5000000 200 2000 20
 
-
+#ARGS ARE <NB OF PHILOS> 2 <DIE TIME> 3 <EAT TIME> 4<SLEEL TIME> 5<MAX MEALS>
 
 
 
