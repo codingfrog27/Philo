@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/10 18:02:24 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/28 21:22:39 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/07 14:37:26 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ long	whattimeisitrightnow(void)
 
 long	time_since_x(long x)
 {
-	return (whattimeisitrightnow() - x);
+	static long	start_time;
+
+	if (!start_time)
+		start_time = whattimeisitrightnow();
+	return (whattimeisitrightnow() - start_time - x);
 }
 
 bool	coolsleep(useconds_t sleep_time)
@@ -42,7 +46,7 @@ bool	coolsleep(useconds_t sleep_time)
 	{
 		if (usleep(nap_time) == -1)
 			return (false);
-		time_passed = time_since_x(start_time);
+		time_passed = whattimeisitrightnow() - start_time;
 	}
 	return (true);
 }

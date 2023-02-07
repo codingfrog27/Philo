@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/23 12:31:11 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/02/06 19:07:29 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/07 14:56:17 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_philo	*philo_init(t_data	*data)
 	{
 		philos[i].id = i;
 		philos[i].meals_eaten = 0;
+		philos[i].full = false;
 		philos[i].last_mealtime = 0;
 		// not sure if ^ should be 0 or local time
 		philos[i].data = data;
@@ -85,7 +86,7 @@ bool	starting_threads(t_data *data)
 		i++;
 	}
 	// might change to 1 mutex instead of 1mutex per philo
-	data->all_alive = true; //could move to init or parsing, but can also be
-	data->start_time = whattimeisitrightnow();// check for thread creation :)
+	data->all_alive = true; //could move to init or parsing, but can also be check for thread creation :)
+	time_since_x(0);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/10 17:40:45 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/23 12:32:28 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/07 15:01:16 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ bool	parsing(int argc, char **argv, t_data *data)
 	data->die_time = philatoi(argv[i++]);
 	data->eat_time = philatoi(argv[i++]);
 	data->sleep_time = philatoi(argv[i++]);
+	data->full_philos = 0;
 	if (argc == 6)
 	{
 		data->finish_when_full = true;

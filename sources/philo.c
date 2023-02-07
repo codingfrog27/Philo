@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/23 17:14:11 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/02/06 19:38:36 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/07 15:05:54 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	philo_sleep(t_philo *philo)
 {
-	printf("zzzzz\n");
+	// printf("zzzzz\n");
 	(void)philo;
 }
 
 void	repeat(t_philo *philo)
 {
-	printf("spin, and do it all over again\n");
+	// printf("spin, and do it all over again\n");
 	(void)philo;
 }
 
@@ -32,6 +32,7 @@ bool	eat(t_philo *philo)
 	pthread_mutex_lock(philo->meal_check);
 	if (time_since_x(philo->last_mealtime) > data->die_time)
 	{
+		printf("%shere%li > %i %s\n", C_GREEN, time_since_x(philo->last_mealtime), data->die_time, C_RESET);
 		pthread_mutex_lock(&data->living_mutex); //mutex lock protect??
 		data->all_alive = false;
 		pthread_mutex_unlock(&data->living_mutex);
@@ -40,10 +41,14 @@ bool	eat(t_philo *philo)
 	pthread_mutex_lock(&data->living_mutex);
 	if (data->all_alive == true)
 	{
-		//but what if he dies in this small meantime?? Also maybe store last mealtime instead of calling time since x twice
+//but what if he dies in this small meantime??
+//  Also maybe store last mealtime instead of calling time since x twice
 		philo->last_mealtime = time_since_x(data->start_time);
-		printf("philo %i a yummy meal at %lu :)\n", philo->id, \
-		philo->last_mealtime);
+		printf("%s philo %i a yummy meal at %lu %s:)\n", C_GREEN, philo->id, \
+		philo->last_mealtime, C_RESET);
+		philo->meals_eaten++;
+		if (philo->meals_eaten == philo->data->meals_needed)
+			data->full_philos++;
 	}
 	pthread_mutex_unlock(&data->living_mutex);
 	pthread_mutex_unlock(philo->meal_check);
@@ -59,9 +64,9 @@ void	*philo_routine(void *para)
 	philo = para;
 	pthread_mutex_lock(philo->meal_check);
 	pthread_mutex_unlock(philo->meal_check);
-	printf("hi, Im philo nb %d\n", philo->id);
 	if (philo->id % 2)
-		coolsleep(500);
+		coolsleep(250);
+	printf("hi, Im philo nb %d\n", philo->id);
 	while (1)
 	{
 		eat(philo);

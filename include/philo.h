@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 12:55:20 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/02/06 19:11:55 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/07 14:59:51 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,22 @@
 # include <limits.h>
 # include <sys/time.h>
 
+typedef struct s_data	t_data;
+
 typedef struct philo
 {
 	int				id;
 	int				meals_eaten;
+	bool			full;
 	pthread_mutex_t	*meal_check;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	long			last_mealtime;
-	void			*data;
+	t_data			*data;
 	pthread_t		thread;
 }				t_philo;
 //also using mealcheck to see if philo is alive + as start lock?
-typedef struct data
+struct s_data
 {
 	int				philo_amount;
 	int				die_time;
@@ -45,9 +48,10 @@ typedef struct data
 	bool			all_alive;
 	bool			finish_when_full;
 	int				meals_needed;
+	int				full_philos;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
-}				t_data;
+};
 
 bool	parsing(int argc, char **argv, t_data *data);
 bool	setting_the_table(t_data *data);
