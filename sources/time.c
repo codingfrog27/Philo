@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/10 18:02:24 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/02/07 14:37:26 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/07 18:19:01 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ long	time_since_x(long x)
 	static long	start_time;
 
 	if (!start_time)
+	{
 		start_time = whattimeisitrightnow();
+		printf("START TIME == %li", start_time);
+	}
 	return (whattimeisitrightnow() - start_time - x);
 }
 

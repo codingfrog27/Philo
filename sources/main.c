@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/09 18:23:54 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/02/07 15:05:12 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/07 16:43:51 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,18 @@ void	monitoring(t_data *data)
 				last_mealtime, data->die_time);
 				pthread_mutex_lock(&data->living_mutex);
 				data->all_alive = false;
-				if (data->full_philos >= data->philo_amount)
-				{
-					printf("%sEVERYONE FULL\n", C_LBLUE);
-					exit(0);
-				}
 				end_simulation(&philos[i]);
 				pthread_mutex_unlock(&data->living_mutex);
 			}
 			pthread_mutex_unlock(philos[i].meal_check);
 			i++;
+			pthread_mutex_lock(&data->living_mutex);
+			if (data->full_philos >= data->philo_amount)
+			{
+				printf("%sEVERYONE FULL\n", C_LBLUE);
+				exit(0);
+			}
+			pthread_mutex_unlock(&data->living_mutex);
 		}
 		i = 0;
 	}

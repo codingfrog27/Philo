@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/23 17:14:11 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/02/07 15:05:54 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/07 18:23:31 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ bool	eat(t_philo *philo)
 	pthread_mutex_lock(philo->meal_check);
 	if (time_since_x(philo->last_mealtime) > data->die_time)
 	{
-		printf("%shere%li > %i %s\n", C_GREEN, time_since_x(philo->last_mealtime), data->die_time, C_RESET);
+		printf("%sphilo %i died here\nlast mealtime = %li > %i %s\n", C_ORANGE, \
+		philo->id, time_since_x(philo->last_mealtime), data->die_time, C_RESET);
 		pthread_mutex_lock(&data->living_mutex); //mutex lock protect??
 		data->all_alive = false;
 		pthread_mutex_unlock(&data->living_mutex);
@@ -64,8 +65,8 @@ void	*philo_routine(void *para)
 	philo = para;
 	pthread_mutex_lock(philo->meal_check);
 	pthread_mutex_unlock(philo->meal_check);
-	if (philo->id % 2)
-		coolsleep(250);
+	// if (philo->id % 2)
+	// 	coolsleep(250);
 	printf("hi, Im philo nb %d\n", philo->id);
 	while (1)
 	{
