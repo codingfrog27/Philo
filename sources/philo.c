@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/23 17:14:11 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/02/07 18:23:31 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/08 18:47:17 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	eat(t_philo *philo)
 	{
 //but what if he dies in this small meantime??
 //  Also maybe store last mealtime instead of calling time since x twice
-		philo->last_mealtime = time_since_x(data->start_time);
+		philo->last_mealtime = time_since_x(philo->last_mealtime);
 		printf("%s philo %i a yummy meal at %lu %s:)\n", C_GREEN, philo->id, \
 		philo->last_mealtime, C_RESET);
 		philo->meals_eaten++;
