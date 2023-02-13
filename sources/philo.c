@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/23 17:14:11 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/02/08 18:47:17 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/13 20:17:05 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	philo_sleep(t_philo *philo)
 {
-	// printf("zzzzz\n");
+	coolsleep(philo->data->sleep_time);
+	// printf("%sphilo %i slept at %li > %i %s\n", C_ORANGE, \
+	// 	philo->id, time_since_x(whattimeisitrightnow), C_RESET);
 	(void)philo;
 }
 
