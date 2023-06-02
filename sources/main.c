@@ -67,7 +67,7 @@ int	main(int argc, char **argv)
 		//might need a specefic error msg for this??
 		return (1);
 	}
-	if (setting_the_table(&data) && starting_threads(&data))
+	if (setting_the_table(&data) && starting_ threads(&data))
 		monitoring(&data);
 	//1 philo might be edgecase that needs hardcoding
 	return (0);

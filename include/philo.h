@@ -24,7 +24,7 @@
 
 typedef struct s_data	t_data;
 
-typedef struct philo
+typedef struct s_philo
 {
 	int				id;
 	int				meals_eaten;

@@ -6,7 +6,7 @@
 /*   By: mde-cloe <mde-cloe@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/01/04 18:38:49 by mde-cloe      #+#    #+#                 */
-/*   Updated: 2023/01/13 13:43:54 by mde-cloe      ########   odam.nl         */
+/*   Updated: 2023/02/14 13:51:26 by mde-cloe      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	*double_on_heap(void *para_nbr)
 	int	*nbr;
 
 	nbr = malloc(sizeof(int));
-	printf("passed through var = %d\n", *(int *)para_nbr);
+	printf("passed through var = %d\n", \
+		*(int *)para_nbr);
 	*nbr = *(int *)para_nbr * 2;
 	return ((void *)nbr);
 }
